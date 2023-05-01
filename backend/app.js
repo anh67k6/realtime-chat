@@ -1,9 +1,11 @@
 const express = require("express");
 const morgan = require("morgan");
 const routes = require("./routes/index");
-const rateLimit = require("express-rate-limit"); 
-const helmet = require("helmet"); 
-const mongosanitize = require("express-mongo-sanitize"); 
+
+const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
+
+const mongosanitize = require("express-mongo-sanitize"); // This module searches for any keys in objects that begin with a $ sign or contain a ., from req.body, req.query or req.params.
 
 // By default, $ and . characters are removed completely from user-supplied input in the following places:
 // - req.body
@@ -20,7 +22,8 @@ const bodyParser = require("body-parser"); // Node.js body parsing middleware.
 const cors = require("cors"); // CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
 const cookieParser = require("cookie-parser"); // Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
 const session = require("cookie-session"); // Simple cookie-based session middleware.
-
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
 
 
 const app = express();
