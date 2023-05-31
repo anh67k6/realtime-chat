@@ -1,40 +1,45 @@
 import React from "react";
-import Chats from "./Chats";
-import { Box, Stack } from "@mui/material";
-import Chat from "../../components/Chat/index";
+import Chats from "./Chat";
+import { Box, Stack, Typography } from "@mui/material";
+import Conversation from "../../components/Conversation";
 import { useTheme } from "@mui/material/styles";
 import Contact from "../../components/Contact";
 import { useSelector } from "react-redux";
-import SharedMessage from "../../components/SharedMessage";
-import StarredMessage from "../../components/StarredMessage";
+import SharedMessage from "../../components/SharedMessages";
+import StarredMessage from "../../components/StarredMessages";
+import NoChatSVG from "../../assets/Illustration/NoChat"
 
 const GeneralApp = () => {
   const theme = useTheme();
-  
-  const { sideBar } = useSelector((store) => store.app);
+  const { sideBar, chat_type, room_id } = useSelector((store) => store.app)
 
   return (
-    <>
-      <Stack direction="row" sx={{ width: "100%" }}>
-        <Chats />
-        <Box
-          sx={{
-            height: "100%",
-            width: sideBar.open
-              ? `calc(100vw - 740px )`
-              : "calc(100vw - 420px )",
-            backgroundColor:
-              theme.palette.mode === "light"
-                ? "#FFF"
-                : theme.palette.background.paper,
-          }}
-        >
-          <Chat />
-        </Box>
-        
-        {/* Contact */}
-        {sideBar.open && (()=>{
-          switch(sideBar.type){
+    <Stack direction={"row"} sx={{ width: "100%" }}>
+      <Chats />
+      <Box
+        sx={{
+          height: "100%",
+          width: sideBar.open ? "497px" : "658px",
+          backgroundColor: theme.palette.mode === "light" ? "#F0F4FA" : theme.palette.background.paper,
+        }}>
+        {room_id !== null && chat_type === "individual" ? <Conversation /> :
+          <Stack spacing={2} sx={{ height: "100%", width: "100%" }} alignItems={"center"} justifyContent={"center"}>
+            <NoChatSVG />
+            <Typography variant="subtitle2">
+              Select a Conversation or start new one
+            </Typography>
+          </Stack>
+        }
+      </Box>
+      <Box
+        sx={{
+          width: sideBar.open ? "200px" : "0px",
+          position: "relative",
+          left: 500
+        }}
+      >
+        {sideBar.open && (() => {
+          switch (sideBar.type) {
             case "CONTACT":
               return <Contact />
             case "STARRED":
@@ -45,9 +50,8 @@ const GeneralApp = () => {
               break;
           }
         })()}
-        
-      </Stack>
-    </>
+      </Box>
+    </Stack>
   );
 };
 

@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from "react-helmet-async";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { store } from "./redux/store";
 import { Provider as ReduxProvider } from "react-redux";
-
+import { store } from "./redux/store";
 // contexts
 import SettingsProvider from "./contexts/SettingsContext";
 

@@ -108,6 +108,7 @@ const Settings = () => {
                             </Stack>
                         </Stack>
 
+                        {/**List of options */}
                         <Stack spacing={4}>
                             {list.map(({ key, icon, title, onclick }) =>
                                 <>
