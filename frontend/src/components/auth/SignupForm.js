@@ -3,66 +3,68 @@ import {
   Button,
   Container,
   FormControl,
-  FormErrorMessage,
   FormLabel,
-  HStack,
   Heading,
+  HStack,
   Input,
-  Link,
-  Spinner,
   Stack,
   Text,
+  FormErrorMessage,
+  Spinner,
+  Link,
   useToast,
 } from "@chakra-ui/react";
 
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
 import { PasswordField } from "./PasswordField";
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { signupUser } from "../../store/auth/auth.action";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../../store/auth/auth.action";
 
 const EMAIL_REGEX =
   /^(([a-zA-Z0-9]+)([.]{1})?)*[a-zA-Z0-9]@([a-zA-Z0-9]+[.])+[a-zA-Z0-9]+$/;
 
-export default function LoginForm() {
-  const toast = useToast();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const { loading, success, error, userToken } = useSelector(
+export default function SignupForm() {
+  const { loading, userInfo, success, error } = useSelector(
     (state) => state.auth
   );
 
+  console.log(success)
+
+  const toast = useToast();
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (success) navigate("/login");
+  }, [navigate, userInfo, success]);
+
   const submitForm = (data) => {
-    dispatch(loginUser(data));
+    console.log(data);
+    dispatch(signupUser(data));
   };
 
   useEffect(() => {
-    if (!loading && success && userToken) {
-      navigate("/chat");
+    if (!loading && success) {
       toast({
         status: "success",
         description: "Logged in successfully",
       });
-
-      if (userToken) {
-        localStorage.setItem("jwt", userToken);
-      }
     } else if (!loading && error) {
       toast({
         status: "error",
         description: error,
       });
     }
-  }, [success, error, loading, toast]);
-
+  }, [success, error, loading]);
   return (
     <Container
       maxW="lg"
@@ -90,7 +92,7 @@ export default function LoginForm() {
                 md: "sm",
               }}
             >
-              Log in to your account
+              Create your own account
             </Heading>
           </Stack>
         </Stack>
@@ -119,18 +121,32 @@ export default function LoginForm() {
           <form onSubmit={handleSubmit(submitForm)}>
             <Stack spacing="6">
               <Stack spacing="5">
+                <FormControl isInvalid={errors.name}>
+                  <Input
+                    id="name"
+                    type="name"
+                    name="name"
+                    placeholder="Name"
+                    {...register("name", {
+                      required: "Vui lòng điền tên",
+                    })}
+                  />
+                  <FormErrorMessage>
+                    {errors.name && errors.name.message}
+                  </FormErrorMessage>
+                </FormControl>
                 <FormControl isInvalid={errors.email}>
                   <Input
                     id="email"
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Email"
                     {...register("email", {
-                      required: "Vui lòng điền đầy đủ thông tin",
+                      required: "Vui lòng điền email",
                       pattern: {
-                        value : EMAIL_REGEX,
+                        value: EMAIL_REGEX,
                         message: "Email không hợp lệ",
-                      }
+                      },
                     })}
                   />
                   <FormErrorMessage>
@@ -141,23 +157,28 @@ export default function LoginForm() {
                   error={errors.password && errors.password.message}
                   register={register}
                 />
+                <PasswordField
+                  name="passwordConfirm"
+                  label="Confirm Password"
+                  error={
+                    errors.passwordConfirm && errors.passwordConfirm.message
+                  }
+                  register={register}
+                  watch={watch}
+                />
               </Stack>
-              <HStack justify="center">
-                <div />
-                <Button variant="link" size="sm">
-                  Quên mật khẩu?
-                </Button>
-              </HStack>
               <HStack spacing="1" justify="center">
-                <Text color="muted">Chưa có mật khẩu?</Text>
-                <Link variant="link" colorScheme="blue" href="signup">
+                <Text color="muted">Bạn đã có tài khoản?</Text>
+                <Link variant="link" colorScheme="blue" role="a" href="/login">
                   Đăng ký
                 </Link>
               </HStack>
               <Stack spacing="6">
-                <Button variant="solid" colorScheme="blue" type="submit">
-                  Đăng nhập
-                </Button>
+                <Button
+                  variant="solid"
+                  colorScheme="blue"
+                  type="submit"
+                >Đăng ký</Button>
               </Stack>
             </Stack>
           </form>
