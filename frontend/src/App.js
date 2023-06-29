@@ -1,21 +1,23 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./components/pages/login/Login.js";
-import Signup from './components/pages/signup/Signup.js' 
-import HomePage from "./components/pages/home/Home.js";
-import ChatPage from "./components/pages/chat/Chat.js";
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import ChatPage from "./pages/chat/ChatPage";
+import LoginPage from "./pages/login/LoginPage";
+import SignupPage from "./pages/singup/SignupPage";
+import { PageRoute } from "./common/constants";
+import Room from "./features/chat/components/VideoCall/Room";
+import CreateRoom from "./features/chat/components/VideoCall/CreateRoom";
 
 function App() {
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route exact path='/' element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/chat" element={<ChatPage />} />
-        </Routes>
-      </BrowserRouter>
-      ,
+    <div className="app">
+      <Routes>
+        <Route exact path={PageRoute.HOME_PAGE} element={<ChatPage/>} />
+        <Route exact path={PageRoute.CHAT_PAGE} element={<ChatPage />} />
+        <Route exact path={PageRoute.LOGIN_PAGE} element={<LoginPage />} />
+        <Route exact path={PageRoute.SIGNUP_PAGE} element={<SignupPage />} />
+        <Route exact path={"/create-room"} element={<CreateRoom />} />
+        <Route exact path={"/room/:roomID"} element={<Room />} />
+      </Routes>
     </div>
   );
 }
