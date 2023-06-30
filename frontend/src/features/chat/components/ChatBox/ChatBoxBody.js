@@ -51,7 +51,7 @@ function ChatBoxBody({ typing }) {
       style={{ maxHeight: "calc(100vh-152px)" }}
       overflowY="auto"
     >
-      <ScrollableFeed className="w-full p-4">
+      <ScrollableFeed className="scroll-feed" style={{ width: "100"}}>
         {messages?.map((message) => (
           <Message key={message._id} message={message} />
         ))}

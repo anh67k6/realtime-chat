@@ -345,39 +345,9 @@ const VideoRoom = () => {
         bg="white"
       >
         <HStack spacing={4}>
-          <Tooltip label={isAudioEnabled ? "Mute Audio" : "Unmute Audio"}>
-            <IconButton
-              aria-label={isAudioEnabled ? "Mute Audio" : "Unmute Audio"}
-              icon={isAudioEnabled ? <MdMic /> : <MdMicOff />}
-              variant="ghost"
-              onClick={toggleAudio}
-            />
-          </Tooltip>
-
-          <Tooltip label={isVideoEnabled ? "Stop Video" : "Start Video"}>
-            <IconButton
-              aria-label={isVideoEnabled ? "Stop Video" : "Start Video"}
-              icon={isVideoEnabled ? <MdVideocam /> : <MdVideocamOff />}
-              variant="ghost"
-              onClick={toggleVideo}
-            />
-          </Tooltip>
-
-          <Tooltip
-            label={isScreenSharing ? "Stop Screen Sharing" : "Share Screen"}
-          >
-            <IconButton
-              aria-label={
-                isScreenSharing ? "Stop Screen Sharing" : "Share Screen"
-              }
-              icon={isScreenSharing ? <MdStopScreenShare /> : <MdScreenShare />}
-              variant="ghost"
-              onClick={toggleScreenSharing}
-            />
-          </Tooltip>
 
           <Button colorScheme="red" onClick={onOpen}>
-            End Meeting
+            Kết thúc
           </Button>
         </HStack>
       </Flex>
@@ -385,17 +355,16 @@ const VideoRoom = () => {
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>End Meeting Confirmation</ModalHeader>
+          <ModalHeader>Xác nhận</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            Are you sure you want to end the meeting? This action cannot be
-            undone.
+Bạn muốn rời cuộc trò chuyện này chứ
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="red" mr={3} onClick={onClose}>
+            <Button mr={3} onClick={onClose}>
               Cancel
             </Button>
-            <Button colorScheme="green" onClick={() => window.close()}>
+            <Button colorScheme="red" onClick={() => window.close()}>
               End Meeting
             </Button>
           </ModalFooter>

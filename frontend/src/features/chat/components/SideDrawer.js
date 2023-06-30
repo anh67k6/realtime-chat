@@ -54,7 +54,62 @@ function SideDrawer() {
   }, [accessChatLoading, accessChatError, accessChatResponse, dispatch]);
   const debouncedResults = debounce(handleSearch, 300);
 
-  return (
+  // return (
+  //   <>
+  //     <Box
+  //       d="flex"
+  //       justifyContent="space-between"
+  //       alignItems="center"
+  //       bg="white"
+  //       w="100%"
+  //     >
+  //       <Tooltip label="Tìm đoạn chat">
+  //         <IconButton
+  //           onClick={onOpen}
+  //           icon={<RiSearch2Line />}
+  //           rounded="full"
+  //         ></IconButton>
+  //       </Tooltip>
+  //     </Box>
+
+  //     <Drawer
+  //       placement="left"
+  //       onClose={() => {
+  //         dispatch(clearSearch());
+  //         onClose();
+  //       }}
+  //       isOpen={isOpen}
+  //     >
+  //       <DrawerOverlay />
+  //       <DrawerContent>
+  //         <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
+  //         <DrawerBody>
+  //           <Box d="flex" pb={2}>
+  //             <Input
+  //               placeholder="Search by name or email"
+  //               mr={2}
+  //               onChange={(e) => debouncedResults(e.target.value)}
+  //             />
+  //           </Box>
+  //           {usersLoading ? (
+  //             <ChatLoading />
+  //           ) : (
+  //             searchUsers?.map((user) => (
+  //               <UserListItem
+  //                 key={user._id}
+  //                 user={user}
+  //                 handleFunction={() => handleAccessChat(user._id)}
+  //               />
+  //             ))
+  //           )}
+  //           {accessChatLoading && <Spinner ml="auto" d="flex" />}
+  //         </DrawerBody>
+  //       </DrawerContent>
+  //     </Drawer>
+  //   </>
+  // );
+
+    return (
     <>
       <Box
         d="flex"
@@ -63,7 +118,7 @@ function SideDrawer() {
         bg="white"
         w="100%"
       >
-        <Tooltip label="Search Chat">
+        <Tooltip label="Tìm đoạn chat">
           <IconButton
             onClick={onOpen}
             icon={<RiSearch2Line />}

@@ -69,11 +69,12 @@ const RenameGroupChatModal = ({ children }) => {
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Edit Chat Name</ModalHeader>
+          <ModalHeader>Đổi tên đoạn chat</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl>
               <Input
+              variant="flushed"
                 value={chatName}
                 onChange={(e) => setChatName(e.target.value)}
               />
@@ -81,10 +82,10 @@ const RenameGroupChatModal = ({ children }) => {
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={handleRename}>
-              {renameGroupChatLoading ? <Spinner size="sm" /> : "Rename"}
+              {renameGroupChatLoading ? <Spinner size="sm" /> : "Đổi tên"}
             </Button>
             <Button variant="ghost" onClick={onClose}>
-              Cancel
+              Hủy
             </Button>
           </ModalFooter>
         </ModalContent>

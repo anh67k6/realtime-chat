@@ -24,12 +24,12 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import { useContext, useState } from "react";
-import { AiOutlineLogout, AiOutlineMessage } from "react-icons/ai";
+import { AiOutlineLogout} from "react-icons/ai";
 import { FiChevronDown, FiMenu, FiSettings } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logOut } from "../../features/auth/auth.reducer";
-import { BASE_URL, PageRoute } from "../constants";
+import {PageRoute } from "../constants";
 import { SocketContext } from "../../plugins/socket/SocketProvider";
 
 const LinkItems = [
@@ -47,7 +47,7 @@ export default function Sidebar({ children }) {
 
   const [isSmallerThanMD] = useMediaQuery("(max-width: 768px)");
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box minH="100vh" bg="#1261A0">
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -102,7 +102,7 @@ const SidebarContent = ({
 
   return (
     <Box
-      bg={useColorModeValue("white", "gray.900")}
+      bg='#1261A0'
       borderRight="1px"
       borderRightColor={useColorModeValue("gray.200", "gray.700")}
       w={{ base: "full", md: navSize === NavSize.LARGE ? "240px" : "60px" }}
@@ -178,7 +178,7 @@ const SidebarContent = ({
             >
               <MenuItem onClick={handleSignout}>
                 <Icon mr={"4"} fontSize="16" as={AiOutlineLogout} />
-                Sign out
+                Đăng xuất
               </MenuItem>
             </MenuList>
           </Menu>
@@ -203,6 +203,7 @@ const NavItem = ({ icon, children, navSize, to, ...rest }) => {
           p="4"
           mx={navSize === NavSize.SMALL ? "1" : "4"}
           borderRadius="lg"
+          color="white"
           role="group"
           cursor="pointer"
           _hover={{

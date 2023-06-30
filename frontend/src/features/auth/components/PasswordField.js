@@ -8,7 +8,9 @@ import {
   useDisclosure,
   useMergeRefs,
   FormErrorMessage,
+  InputLeftElement,
 } from "@chakra-ui/react";
+import { LockIcon } from "@chakra-ui/icons";
 import { forwardRef, useRef } from "react";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import PropTypes from "prop-types";
@@ -37,15 +39,21 @@ export const PasswordField = forwardRef((props, ref) => {
             onClick={onClickReveal}
           />
         </InputRightElement>
+
+        <InputLeftElement>
+        
+          <LockIcon />
+        </InputLeftElement>
         <Input
           id={props.id || "password"}
           ref={mergeRef}
           name="password"
+          variant='flushed'
           type={isOpen ? "text" : "password"}
           autoComplete="current-password"
           {...(register
             ? register(props.name || "password", {
-                required: "This field is required",
+                required: "Vui lòng nhập mật khẩu",
                 validate: (val) => {
                   if (props.name !== "passwordConfirm") return true;
                   if (watch && watch("password") != val) {

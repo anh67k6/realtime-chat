@@ -123,30 +123,31 @@ const GroupChatModal = ({ children }) => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader
-            fontSize="35px"
-            fontFamily="Work sans"
+            fontSize="22px"
             d="flex"
             justifyContent="center"
           >
-            Create Group Chat
+            Tạo nhóm
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody d="flex" flexDir="column" alignItems="center">
             <FormControl>
               <Input
-                placeholder="Chat Name"
+                placeholder="Nhập tên nhóm"
+                variant="flushed"
                 mb={3}
                 onChange={(e) => setGroupChatName(e.target.value)}
               />
             </FormControl>
             <FormControl>
               <Input
-                placeholder="Add Users eg: John, Piyush, Jane"
+                placeholder="Thành viên"
                 mb={1}
+                variant='flushed'
                 onChange={(e) => debouncedResults(e.target.value)}
               />
             </FormControl>
-            <Box w="100%" d="flex" flexWrap="wrap">
+            <Box w="100%" d="flex" flexWrap="wrap" pt="4">
               {selectedUsers.map((u) => (
                 <UserBadgeItem
                   key={u._id}
@@ -156,7 +157,6 @@ const GroupChatModal = ({ children }) => {
               ))}
             </Box>
             {usersLoading ? (
-              // <ChatLoading />
               <div>Loading...</div>
             ) : (
               <VStack maxH="200px" overflowY="auto">
@@ -176,8 +176,8 @@ const GroupChatModal = ({ children }) => {
               colorScheme="blue"
               disabled={createGroupChatLoading}
             >
-              {createGroupChatLoading && <Spinner ml="auto" d="flex" />} Create
-              Chat
+              {createGroupChatLoading && <Spinner ml="auto" d="flex" />} 
+              Tạo nhóm
             </Button>
           </ModalFooter>
         </ModalContent>

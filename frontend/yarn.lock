@@ -1370,7 +1370,7 @@
 
 "@chakra-ui/icons@^2.0.19":
   version "2.0.19"
-  resolved "https://registry.npmjs.org/@chakra-ui/icons/-/icons-2.0.19.tgz"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/icons/-/icons-2.0.19.tgz#b4581a59c2e2a2b95b01ab251eabb8cf984bb00f"
   integrity sha512-0A6U1ZBZhLIxh3QgdjuvIEhAZi3B9v8g6Qvlfa3mu6vSnXQn2CHBZXmJwxpXxO40NK/2gj/gKXrLeUaFR6H/Qw==
   dependencies:
     "@chakra-ui/icon" "3.0.16"

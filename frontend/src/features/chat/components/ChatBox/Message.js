@@ -12,7 +12,7 @@ function Message({ message, isTypingMessage, children, chatPartner }) {
   if (!isYou)
     return (
       <HStack py={2} w="full" alignItems="start">
-        <Avatar size="sm" />
+        <Avatar size="sm" name={chatPartner?.chatName || message?.sender?.name}/>
         <VStack alignItems="start">
           <HStack>
             <Text>{chatPartner?.chatName || message?.sender?.name}</Text>
@@ -45,7 +45,7 @@ function Message({ message, isTypingMessage, children, chatPartner }) {
           <Text align={"left"}>{message?.content}</Text>
         </Box>
       </VStack>
-      <Avatar size="sm" />
+      <Avatar size="sm" name={userInfo.name} />
     </HStack>
   );
 }

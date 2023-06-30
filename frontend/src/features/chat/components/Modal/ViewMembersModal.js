@@ -28,12 +28,11 @@ const ViewMembersModal = ({ children }) => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader
-            fontSize="35px"
-            fontFamily="Work sans"
+            fontSize="25px"
             d="flex"
             justifyContent="center"
           >
-            Members
+            Thành viên
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody d="flex" flexDir="column" alignItems="center">
@@ -50,7 +49,7 @@ const ViewMembersModal = ({ children }) => {
           </ModalBody>
           <ModalFooter>
             <Button variant="ghost" onClick={onClose}>
-              Close
+              Đóng
             </Button>
           </ModalFooter>
         </ModalContent>

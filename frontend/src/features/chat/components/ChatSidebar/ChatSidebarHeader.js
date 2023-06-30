@@ -9,6 +9,7 @@ import {
 import { RiQuillPenLine } from "react-icons/ri";
 import SideDrawer from "../SideDrawer";
 import GroupChatModal from "../Modal/GroupChatModal";
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
 
 function ChatSidebarHeader() {
   return (
@@ -19,8 +20,8 @@ function ChatSidebarHeader() {
         </Text>
         <HStack>
           <GroupChatModal>
-            <Tooltip label="Create new Chat">
-              <IconButton icon={<RiQuillPenLine />} rounded="full"></IconButton>
+            <Tooltip label="Tạo nhóm">
+              <IconButton icon={<AiOutlineUsergroupAdd />} rounded="full"></IconButton>
             </Tooltip>
           </GroupChatModal>
 

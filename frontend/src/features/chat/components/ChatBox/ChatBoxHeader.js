@@ -29,7 +29,6 @@ function ChatBoxHeader() {
   const handleInitGroupCall = () => {
     if (!socketService?.socket || !activeConversation?._id) return;
     socketService.emit(ChatEvent.INIT_CALL, activeConversation, userInfo);
-    // history.push(`/room/${activeConversation?._id}`);
     const win = window.open(`/room/${activeConversation?._id}`, "_blank");
     win.focus();
   };
@@ -44,7 +43,7 @@ function ChatBoxHeader() {
     <Box w="full">
       <HStack p="4" h="80px" bg="white" w="full" spacing={8}>
         <HStack spacing={6} flex={1}>
-          <Avatar name="" />
+          <Avatar name={chatName} />
           <VStack align="start" flex={1} spacing={1}>
             <Text fontSize="xl" colorScheme="black" fontWeight={600}>
               {chatName}
@@ -73,12 +72,6 @@ function ChatBoxHeader() {
           </AvatarGroup>
         )}
         <HStack spacing={1}>
-          <IconButton
-            color="gray"
-            icon={<AiOutlinePhone />}
-            rounded="full"
-            variant="ghost"
-          ></IconButton>
           <IconButton
             color="gray"
             icon={<AiOutlineVideoCamera />}

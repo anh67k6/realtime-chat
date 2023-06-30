@@ -43,8 +43,8 @@ export default function ChatBoxMenu() {
         variant="ghost"
         _expanded={{ bg: "gray.100" }}
       ></MenuButton>
-      <MenuList minWidth="200px" bg="white" boxShadow="lg" borderRadius="md">
-        <MenuItem _hover={{ bg: "gray.100" }}>
+      <MenuList minWidth="300px" bg="white" boxShadow="lg" borderRadius="md">
+        <MenuItem _hover={{ bg: "gray.100" }}  height='80px'>
           <Avatar
             size="sm"
             name={chatName}
@@ -52,43 +52,33 @@ export default function ChatBoxMenu() {
             mr={2}
           />
           <Text fontWeight="bold">{chatName}</Text>
-        </MenuItem>
+        </MenuItem >
         {activeConversation?.isGroupChat && (
           <ViewMembersModal>
-            <MenuItem _hover={{ bg: "gray.100" }}>
+            <MenuItem _hover={{ bg: "gray.100" }} height='50px'>
               <FiUsers size={16} />
-              <Text ml={2}>View Members</Text>
+              <Text ml={2}>Thông tin thành viên</Text>
             </MenuItem>
           </ViewMembersModal>
         )}
         {activeConversation?.isGroupChat && (
           <AddMemberModal>
-            <MenuItem _hover={{ bg: "gray.100" }}>
+            <MenuItem _hover={{ bg: "gray.100" }} height='50px'>
               <FiUserPlus size={16} />
-              <Text ml={2}>Add Member</Text>
+              <Text ml={2}>Thêm thành viên</Text>
             </MenuItem>
           </AddMemberModal>
         )}
-        {activeConversation?.isGroupChat && (
-          <MenuItem _hover={{ bg: "gray.100" }}>
-            <FiUserMinus size={16} />
-            <Text ml={2}>Remove Member</Text>
-          </MenuItem>
-        )}
+
         {activeConversation?.isGroupChat && (
           <RenameGroupChatModal>
-            <MenuItem _hover={{ bg: "gray.100" }}>
+            <MenuItem _hover={{ bg: "gray.100" }} height='50px'>
               <FiEdit size={16} />
-              <Text ml={2}>Rename Chat</Text>
+              <Text ml={2}>Đổi tên đoạn chat</Text>
             </MenuItem>
           </RenameGroupChatModal>
         )}
-        {activeConversation?.isGroupChat && (
-          <MenuItem _hover={{ bg: "gray.100" }}>
-            <FiLogOut size={16} />
-            <Text ml={2}>Leave Chat</Text>
-          </MenuItem>
-        )}
+
       </MenuList>
     </Menu>
   );

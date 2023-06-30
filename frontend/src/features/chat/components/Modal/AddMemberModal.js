@@ -141,18 +141,18 @@ const AddMemberModal = ({ children }) => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader
-            fontSize="35px"
-            fontFamily="Work sans"
+            fontSize="25px"
             d="flex"
             justifyContent="center"
           >
-            Add people
+            Thêm thành viên
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody d="flex" flexDir="column" alignItems="center">
             <FormControl>
               <Input
-                placeholder="Search"
+                placeholder="Tìm kiếm"
+                variant='flushed'
                 mb={1}
                 onChange={(e) => debouncedResults(e.target.value)}
               />
@@ -180,7 +180,7 @@ const AddMemberModal = ({ children }) => {
                 ))}
               </VStack>
             ) : (
-              <span>No user found</span>
+              <div></div>
             )}
           </ModalBody>
           <ModalFooter>
@@ -190,10 +190,10 @@ const AddMemberModal = ({ children }) => {
               disabled={addMembersToGroupLoading}
               mr={3}
             >
-              {addMembersToGroupLoading && <Spinner ml="auto" d="flex" />} Add
+              {addMembersToGroupLoading && <Spinner ml="auto" d="flex" />} Thêm
             </Button>
             <Button variant="ghost" onClick={onClose}>
-              Cancel
+              Hủy
             </Button>
           </ModalFooter>
         </ModalContent>

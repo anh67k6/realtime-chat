@@ -16,6 +16,8 @@ import { useDispatch } from "react-redux";
 import { accessChat } from "../../chat.actions";
 
 const UserListItem2 = ({ user }) => {
+
+  console.log(user)
   const dispatch = useDispatch();
   const handleMenuClick = () => {
     // Handle the menu option click (e.g., send a message to the user)
@@ -25,7 +27,7 @@ const UserListItem2 = ({ user }) => {
   return (
     <VStack w="100%">
       <HStack w="100%" p={2}>
-        <Avatar size="sm" src={user.photo} alt={user.name} mr={2} />
+        <Avatar size="sm" src={user.photo} alt={user.name} mr={2} name={user.name} />
         <Box flex={1}>
           <Text fontWeight={600}>{user.name}</Text>
         </Box>

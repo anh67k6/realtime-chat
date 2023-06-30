@@ -21,7 +21,7 @@ function Signup() {
   }, [validateLoading, validateSuccess]);
   
   return (
-    <div className="login-form-container">
+    <div className="signup-form-container">
       <SignupForm />
     </div>
   );

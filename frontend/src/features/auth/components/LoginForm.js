@@ -8,6 +8,8 @@ import {
   HStack,
   Heading,
   Input,
+  InputGroup,
+  InputLeftElement,
   Link,
   Spinner,
   Stack,
@@ -21,9 +23,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PageRoute, Regex } from "../../../common/constants";
 import { loginUser } from "../auth.actions";
-import { Logo } from "./Logo";
 import { PasswordField } from "./PasswordField";
-
+import { EmailIcon } from "@chakra-ui/icons";
 export default function LoginForm() {
   const { loading, success, error, userToken } = useSelector(
     (state) => state.auth
@@ -66,32 +67,26 @@ export default function LoginForm() {
 
   return (
     <Container
-      maxW="lg"
-      py={{
-        base: "12",
-        md: "24",
-      }}
-      px={{
-        base: "0",
-        sm: "8",
-      }}
+    maxW="lg"
+    py={{
+      base: "12",
+      md: "24",
+    }}
+    px={{
+      base: "0",
+      sm: "8",
+    }}
     >
       <Stack spacing="8">
         <Stack spacing="6">
           <Stack
-            spacing={{
-              base: "2",
-              md: "3",
-            }}
+            spacing="2"
             textAlign="center"
           >
             <Heading
-              size={{
-                base: "xs",
-                md: "sm",
-              }}
+              size="sm"
             >
-              Đăng nhập bằng tài khoản Zalo
+              Đăng nhập bằng tài khoản
             </Heading>
           </Stack>
         </Stack>
@@ -121,19 +116,25 @@ export default function LoginForm() {
             <Stack spacing="6">
               <Stack spacing="5">
                 <FormControl isInvalid={errors.email}>
+                  <InputGroup>
+                  <InputLeftElement>
+                    <EmailIcon />
+                  </InputLeftElement>
                   <Input
                     id="email"
                     type="email"
+                    variant='flushed'
                     name="email"
                     placeholder="Email"
                     {...register("email", {
-                      required: "This field is required",
+                      required: "Vui lòng nhập email của bạn",
                       pattern: {
                         value: Regex.EMAIL,
                         message: "Email is invalid",
                       },
                     })}
-                  />
+                  /></InputGroup>
+                  
                   <FormErrorMessage>
                     {errors.email && errors.email.message}
                   </FormErrorMessage>

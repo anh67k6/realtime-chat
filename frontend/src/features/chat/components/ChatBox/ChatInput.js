@@ -1,10 +1,7 @@
 import {
   HStack,
-  IconButton,
   Input,
   InputGroup,
-  InputLeftElement,
-  InputRightElement,
   VStack,
 } from "@chakra-ui/react";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -62,36 +59,15 @@ const ChatInput = ({ chat, socketConnected }) => {
     <VStack w="full">
       <HStack w="full" px={4} py={4}>
         <InputGroup>
-          <InputLeftElement>
-            {/* <Box as={BiMicrophone} color="gray.500" /> */}
-            <IconButton
-              variant="link"
-              rounded="full"
-              icon={<BiMicrophone />}
-              color="gray.500"
-            />
-          </InputLeftElement>
           <Input
             type="text"
-            variant="filled"
-            rounded="xl"
+            variant='flushed'
             placeholder="Type a message..."
             onKeyDown={(e) => handleSendMessage(e)}
             onChange={onMessageChange}
             value={message}
           />
-          <InputRightElement>
-            {/* <Box as={BsCardImage} color="gray.500" /> */}
-            <IconButton
-              variant="link"
-              rounded="full"
-              icon={<BsCardImage />}
-              color="gray.500"
-              onClick={() => sendMessageAction()}
-            />
-          </InputRightElement>
         </InputGroup>
-        <IconButton variant="ghost" rounded="full" icon={<BsFillSendFill />} />
       </HStack>
     </VStack>
   );

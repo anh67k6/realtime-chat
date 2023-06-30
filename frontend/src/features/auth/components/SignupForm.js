@@ -13,7 +13,10 @@ import {
   Spinner,
   Link,
   useToast,
+  InputGroup,
+  InputLeftElement,
 } from "@chakra-ui/react";
+
 import { Logo } from "./Logo";
 import { PasswordField } from "./PasswordField";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,13 +25,15 @@ import { registerUser } from "../auth.actions";
 import { Regex } from "../../../common/constants";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { EmailIcon } from "@chakra-ui/icons";
+import { BsFillPersonFill } from "react-icons/bs";
 
 export default function SignupForm() {
   const { loading, userInfo, success, error } = useSelector(
     (state) => state.auth
   );
 
-  const navigate= useNavigate();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -39,7 +44,6 @@ export default function SignupForm() {
 
   useEffect(() => {
     if (success) navigate("/login");
-
   }, [navigate, userInfo, success]);
   const dispatch = useDispatch();
   const submitForm = (data) => {
@@ -88,9 +92,8 @@ export default function SignupForm() {
                 md: "sm",
               }}
             >
-              Đăng ký tài khoản Zalo
+              Đăng ký tài khoản
             </Heading>
-
           </Stack>
         </Stack>
         <Box
@@ -119,33 +122,48 @@ export default function SignupForm() {
             <Stack spacing="6">
               <Stack spacing="5">
                 <FormControl isInvalid={errors.name}>
-                  <Input
-                    id="name"
-                    type="name"
-                    name="name"
-                    placeholder="Tên của bạn"
-                    {...register("name", {
-                      required: "This field is required",
-                    })}
-                  />
+                  <InputGroup>
+                    <InputLeftElement>
+                      <BsFillPersonFill />
+                    </InputLeftElement>
+                    <Input
+                      id="name"
+                      type="name"
+                      name="name"
+                      variant="flushed"
+                      placeholder="Tên của bạn"
+                      {...register("name", {
+                        required: "Vui lòng nhập tên của bạn",
+                      })}
+                    />
+                  </InputGroup>
+
                   <FormErrorMessage>
                     {errors.name && errors.name.message}
                   </FormErrorMessage>
                 </FormControl>
                 <FormControl isInvalid={errors.email}>
-                  <Input
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    {...register("email", {
-                      required: "This field is required",
-                      pattern: {
-                        value: Regex.EMAIL,
-                        message: "Email is invalid",
-                      },
-                    })}
-                  />
+                  <InputGroup>
+                    <InputLeftElement>
+                      <EmailIcon></EmailIcon>
+                    </InputLeftElement>
+
+                    <Input
+                      id="email"
+                      type="email"
+                      name="email"
+                      variant="flushed"
+                      placeholder="Email"
+                      {...register("email", {
+                        required: "Vui lòng nhập email của bạn",
+                        pattern: {
+                          value: Regex.EMAIL,
+                          message: "Email không hợp lệ",
+                        },
+                      })}
+                    />
+                  </InputGroup>
+
                   <FormErrorMessage>
                     {errors.email && errors.email.message}
                   </FormErrorMessage>
@@ -153,7 +171,7 @@ export default function SignupForm() {
                 <PasswordField
                   error={errors.password && errors.password.message}
                   register={register}
-                  placeholder='Mật khẩu'
+                  placeholder="Mật khẩu"
                 />
                 <PasswordField
                   name="passwordConfirm"
@@ -166,11 +184,17 @@ export default function SignupForm() {
                 />
               </Stack>
               <HStack spacing="1" justify="center">
-              <Text color="muted">Bạn đã có tài khoản?</Text>
-              <Link variant="link" colorScheme="blue" role="a" href="/login" color="blue">
-                Đăng nhập
-              </Link>
-            </HStack>
+                <Text color="muted">Bạn đã có tài khoản?</Text>
+                <Link
+                  variant="link"
+                  colorScheme="blue"
+                  role="a"
+                  href="/login"
+                  color="blue"
+                >
+                  Đăng nhập
+                </Link>
+              </HStack>
               <Stack spacing="6">
                 <Button
                   variant="solid"

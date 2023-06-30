@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <ChakraProvider
             toastOptions={{
               defaultOptions: {
-                position: "top-right",
+                position: "top",
                 duration: 2000,
                 isClosable: true,
               },
