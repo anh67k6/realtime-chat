@@ -135,7 +135,6 @@ const Chats = () => {
                 </Stack>
                 <Stack sx={{ width: "100%" }}>
                     <Search>
-
                         <StyledInputBase placeholder="Search..." inputProps={{ "aria-label": "search" }} />
                     </Search>
                 </Stack>

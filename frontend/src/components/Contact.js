@@ -19,7 +19,7 @@ import {
   VideoCamera,
   X,
 } from "phosphor-react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ToggleSidebar, UpdateSidebarType } from "../redux/slices/app";
 import { faker } from "@faker-js/faker";
 import AntSwitch from "../components/AntSwitch";

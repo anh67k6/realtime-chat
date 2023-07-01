@@ -1,6 +1,6 @@
 import React from "react";
 import Chats from "./Chats";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import Chat from "../../components/Chat/index";
 import { useTheme } from "@mui/material/styles";
 import Contact from "../../components/Contact";

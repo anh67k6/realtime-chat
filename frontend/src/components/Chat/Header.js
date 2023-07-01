@@ -16,7 +16,7 @@ import { faker } from "@faker-js/faker";
 import { useSearchParams } from "react-router-dom";
 import useResponsive from "../../hooks/useResponsive";
 import StyledBadge from "../StyleBadge";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 
 
 const Conversation_Menu = [
@@ -49,7 +49,7 @@ const ChatHeader = () => {
     setConversationMenuAnchorEl(null);
   };
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
 
   return (
