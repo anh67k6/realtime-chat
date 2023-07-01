@@ -1,7 +1,8 @@
 import React from "react";
-import { Stack, Divider, Typography, Box, Link, IconButton } from "@mui/material";
+import { Stack, Divider, Typography, Box, Link, IconButton, Menu, MenuItem } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { DownloadSimple, Image } from "phosphor-react";
+import { DotsThreeVertical, DownloadSimple, Image } from "phosphor-react";
+import { Message_options } from "../../data";
 const TimeLine = ({ el }) => {
   const theme = useTheme();
   return (
@@ -38,6 +39,7 @@ const TextMsg = ({ el }) => {
           {el.message}
         </Typography>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -69,6 +71,7 @@ const MediaMsg = ({ el }) => {
           </Typography>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -109,6 +112,7 @@ const ReplyMsg = ({ el }) => {
           </Typography>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -160,11 +164,12 @@ const LinkMsg = ({ el }) => {
           </Stack>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
 
-const DocMsg = ({el}) => {
+const DocMsg = ({ el }) => {
   const theme = useTheme();
 
   return (
@@ -180,19 +185,59 @@ const DocMsg = ({el}) => {
         width="max-content"
       >
         <Stack spacing={2}>
-          <Stack p={2} direction='row' spacing={3} alignItems='center' sx={{ backgroundColor: theme.palette.background.paper, borderRadius: 1}}>
+          <Stack p={2} direction='row' spacing={3} alignItems='center' sx={{ backgroundColor: theme.palette.background.paper, border: 1 }}>
             <Image size={48} />
             <Typography variant="caption">Download</Typography>
             <IconButton>
               <DownloadSimple />
             </IconButton>
           </Stack>
-          <Typography variant="body2" color={theme.palette.text}>
-              {el.message}
-            </Typography>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 }
+
+const MessageOptions = () => {
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <>
+      <DotsThreeVertical
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+        size={20}
+      />
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <Stack spacing={1} px={1}>
+          {Message_options.map((el) => (
+            <MenuItem onClick={handleClose}>{el.title}</MenuItem>
+          ))}
+
+        </Stack>
+      </Menu>
+    </>
+  )
+}
+
 export { TimeLine, TextMsg, MediaMsg, ReplyMsg, LinkMsg, DocMsg };
