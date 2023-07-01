@@ -10,7 +10,7 @@ import {
     Divider,
     Avatar
 } from '@mui/material'
-import { ArchiveBox, CircleDashed, MagnifyingGlass } from "phosphor-react";
+import { ArchiveBox, CircleDashed} from "phosphor-react";
 import { styled, alpha, useTheme } from "@mui/material/styles"
 import { faker } from "@faker-js/faker"
 import { ChatList } from "../../data";
@@ -49,7 +49,7 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
         <Box
             sx={{
                 width: "100%",
-                height: 60,
+                height: "auto",
                 borderRadius: 1,
                 backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.default,
             }}
@@ -97,21 +97,11 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
 
 const Search = styled("div")(({ theme }) => ({
     position: "relative",
-    borderRadius: 20,
+    borderRadius: 10,
     backgroundColor: alpha(theme.palette.background.default, 1),
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: "100%",
-}))
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
 }))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -145,9 +135,7 @@ const Chats = () => {
                 </Stack>
                 <Stack sx={{ width: "100%" }}>
                     <Search>
-                        <SearchIconWrapper>
-                            <MagnifyingGlass color="black" sx={{ width: "50%" }} />
-                        </SearchIconWrapper>
+
                         <StyledInputBase placeholder="Search..." inputProps={{ "aria-label": "search" }} />
                     </Search>
                 </Stack>

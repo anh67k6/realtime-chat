@@ -180,13 +180,16 @@ const DocMsg = ({el}) => {
         width="max-content"
       >
         <Stack spacing={2}>
-          <Stack p={2} direction='row' spacing={3} alignItems='center' sx={{ backgroundColor: theme.palette.background.paper, border: 1}}>
+          <Stack p={2} direction='row' spacing={3} alignItems='center' sx={{ backgroundColor: theme.palette.background.paper, borderRadius: 1}}>
             <Image size={48} />
             <Typography variant="caption">Download</Typography>
             <IconButton>
               <DownloadSimple />
             </IconButton>
           </Stack>
+          <Typography variant="body2" color={theme.palette.text}>
+              {el.message}
+            </Typography>
         </Stack>
       </Box>
     </Stack>

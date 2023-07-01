@@ -18,7 +18,7 @@ const Conversation = () => {
           backgroundColor:
             theme.palette.mode === "light"
               ? "#F8FAFF"
-              : theme.palette.background,
+              : theme.palette.background.paper,
           overflowY: "scroll",
         }}
       >
