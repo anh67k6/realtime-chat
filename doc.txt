@@ -1,0 +1,8 @@
+- Sử dụng những biến và màu có sẵn
+
+-------------------------------------
+- Xây dựng Dashboard Page 
+
+1. Suspense, lazy from React
+Suspense : cho phép chúng ta thực hiện một số công việc (như fetch data từ api) song song với quá trình render component
+lazy : Giúp code ngắn gọn hơn
