@@ -2,7 +2,6 @@ import { Alert, IconButton, InputAdornment, Link, Stack } from "@mui/material";
 import { RHFTextField } from "../../components/hook";
 import FormProvider from "../../components/hook/FormProvider";
 import { LoadingButton } from "@mui/lab";
-import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -11,8 +10,6 @@ import { Eye, EyeSlash } from "phosphor-react";
 
 
 export default function LoginForm() {
-  const dispatch = useDispatch();
-
   const [showPassword, setShowPassword] = useState(false);
 
   const LoginSchema = Yup.object().shape({
