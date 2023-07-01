@@ -1,44 +1,44 @@
 //rafce
-import React from 'react'
-import { Box, Stack} from '@mui/material'
-import { Chat_History } from '../../data'
-import { TimeLine } from './MsgType'
+import React from "react";
+import { Box, Stack } from "@mui/material";
+import { Chat_History } from "../../data";
+import { TimeLine, TextMsg, MediaMsg, ReplyMsg, Link, LinkMsg, DocMsg} from "./MsgType";
+
 const Message = () => {
-    console.log(Chat_History)
+  console.log(Chat_History);
   return (
     <Box p={3}>
-        <Stack spacing={3}>
-            {Chat_History.map((el)=>{
-                switch (el.type){
-                    case 'divider':
-                        
-                        return <TimeLine el={el} />
-                    case "msg":
-                        switch(el.subtype){
-                            case "img":
-                                //img message
-                                break;
-                            case "doc":
-                                //doc message
-                                break;
-                            case "link":
-                                break;
-                            case "reply":
-                                break;
-                            
-                            default:
-                                //text
-                                break;
-                        }
-                    break;
+      <Stack spacing={3}>
+        {Chat_History.map((el) => {
+          switch (el.type) {
+            case "divider":
+              return <TimeLine el={el} />;
+            case "msg":
+              switch (el.subtype) {
+                case "img":
+                  return <MediaMsg el={el}/>
+                case "doc":
+                  return <DocMsg el={el}/>
+                case "link":
+                  return <LinkMsg el={el}/>
+                case "reply":
+                  return <ReplyMsg el={el} />
 
-                    default:
-                        return <></>;
-                }
-            })}
-        </Stack>
+                default:
+                  return <TextMsg el={el}/>
+
+              }
+              break;
+
+            default:
+              return <></>;
+          }
+        })}
+      </Stack>
     </Box>
-  )
-}
+  );
+};
+
+
 
 export default Message;
