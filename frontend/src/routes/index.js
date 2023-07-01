@@ -34,6 +34,7 @@ export default function Router() {
       children: [
         { element: <Navigate to={DEFAULT_PATH} replace />, index: true },
         { path: "app", element: <GeneralApp /> },
+        { path: "settings", element: <Settings /> },
 
         { path: "404", element: <Page404 /> },
         { path: "*", element: <Navigate to="/404" replace /> },
@@ -48,4 +49,9 @@ const LoginPage = Loadable(lazy(() => import("../pages/auth/Login")));
 const GeneralApp = Loadable(
   lazy(() => import("../pages/dashboard/GeneralApp")),
 );
+
+const Settings = Loadable(
+  lazy(() => import("../pages/dashboard/Settings")),
+);
+
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));
