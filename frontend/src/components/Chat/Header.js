@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Avatar,
-  Badge,
   Box,
   Divider,
   Fade,
@@ -9,7 +8,6 @@ import {
   Menu,
   MenuItem,
   Stack,
-  styled,
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -17,35 +15,9 @@ import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from "phosphor-react";
 import { faker } from "@faker-js/faker";
 import { useSearchParams } from "react-router-dom";
 import useResponsive from "../../hooks/useResponsive";
+import StyledBadge from "../StyleBadge";
+// import { useDispatch, useSelector } from "react-redux";
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
-  "& .MuiBadge-badge": {
-    backgroundColor: "#44b700",
-    color: "#44b700",
-    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-    "&::after": {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      borderRadius: "50%",
-      animation: "ripple 1.2s infinite ease-in-out",
-      border: "1px solid currentColor",
-      content: '""',
-    },
-  },
-  "@keyframes ripple": {
-    "0%": {
-      transform: "scale(.8)",
-      opacity: 1,
-    },
-    "100%": {
-      transform: "scale(2.4)",
-      opacity: 0,
-    },
-  },
-}));
 
 const Conversation_Menu = [
   {
@@ -76,6 +48,9 @@ const ChatHeader = () => {
   const handleCloseConversationMenu = () => {
     setConversationMenuAnchorEl(null);
   };
+
+  // const dispatch = useDispatch();
+
 
   return (
     <Box
