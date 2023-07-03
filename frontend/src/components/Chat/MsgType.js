@@ -19,7 +19,6 @@ const TimeLine = ({ el }) => {
 const TextMsg = ({ el }) => {
   const theme = useTheme();
 
-  console.log(theme);
   return (
     <Stack direction="row" justifyContent={el.incoming ? "start" : "end"}>
       <Box

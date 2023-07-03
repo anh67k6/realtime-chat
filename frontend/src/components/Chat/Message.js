@@ -12,7 +12,6 @@ import {
 } from "./MsgType";
 
 const Message = () => {
-  console.log(Chat_History);
   return (
     <Box p={3}>
       <Stack spacing={3}>
