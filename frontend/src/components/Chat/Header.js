@@ -16,7 +16,8 @@ import { faker } from "@faker-js/faker";
 import { useSearchParams } from "react-router-dom";
 import useResponsive from "../../hooks/useResponsive";
 import StyledBadge from "../StyleBadge";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { ToggleSidebar } from "../../redux/slices/app";
 
 
 const Conversation_Menu = [
@@ -49,7 +50,7 @@ const ChatHeader = () => {
     setConversationMenuAnchorEl(null);
   };
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
 
   return (
@@ -70,8 +71,9 @@ const ChatHeader = () => {
       >
         <Stack
           onClick={() => {
-            searchParams.set("open", true);
-            setSearchParams(searchParams);
+            // searchParams.set("open", true);
+            // setSearchParams(searchParams);
+            dispatch(ToggleSidebar());
           }}
           spacing={2}
           direction="row"
