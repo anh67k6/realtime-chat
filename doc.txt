@@ -1,8 +1,40 @@
-- Sử dụng những biến và màu có sẵn
+Backend
+--------
 
--------------------------------------
-- Xây dựng Dashboard Page 
+Package
+- Morgan : Package này cung cấp các chức năng ghi lại thông tin về yêu cầu như ghi log, ghi lại các thông tin về thời gian, địa chỉ IP, phương thức HTTP, đường dẫn URL và trạng thái của yêu cầu.
+- Rate Limit
+- Helmet : được sử dụng để cung cấp các biện pháp bảo mật cho ứng dụng web
+- mongosanitize : This module searches for any keys in objects that begin with a $ sign or contain a ., from req.body, req.query or req.params.
+- body-parser
+- xss 
+- cors
 
-1. Suspense, lazy from React
-Suspense : cho phép chúng ta thực hiện một số công việc (như fetch data từ api) song song với quá trình render component
-lazy : Giúp code ngắn gọn hơn
+- mongoose : 
+- validator
+- jwt
+- bcrypt
+- otp-generator
+
+- crypto -> Gen ra reset token
+------------
+
+Auth API
+- Create User Schema :
+    -> Methods:
+        -> CorrectPassword : So sánh mật khẩu bằng bcrypt
+
+- Làm controller 
+    -> Login 
+    -> Register
+
+    -> signToken bằng jwt -> Trả token về client
+        ->filterObject => Trả về 1 object có các cặp tương ứng
+    -> sendOtp cho email đăng ký lần đầu 
+    -> verifyOTP
+    -> Forgot password 
+    -> Reset password
+
+
+
+
