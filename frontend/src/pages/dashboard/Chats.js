@@ -10,10 +10,13 @@ import {
     Divider,
     Avatar
 } from '@mui/material'
-import { ArchiveBox, CircleDashed} from "phosphor-react";
+import { ArchiveBox, CircleDashed, MagnifyingGlass } from "phosphor-react";
 import { styled, alpha, useTheme } from "@mui/material/styles"
 import { faker } from "@faker-js/faker"
 import { ChatList } from "../../data";
+import Search from "../../components/Search/Search";
+import SearchIconWrapper from "../../components/Search/SearchIconWrapper";
+import StyledInputBase from "../../components/Search/StyledInputBase";
 
 const StyleBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -95,23 +98,7 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
     )
 }
 
-const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: 10,
-    backgroundColor: alpha(theme.palette.background.default, 1),
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-}))
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    "& .MuiInputBase-input": {
-        padding: theme.spacing(1, 1, 1, 0),
-        paddingLeft: `calc(1em+${theme.spacing(4)})`,
-        width: "100%",
-    }
-}))
 const Chats = () => {
     const theme = useTheme();
     return (
@@ -135,7 +122,13 @@ const Chats = () => {
                 </Stack>
                 <Stack sx={{ width: "100%" }}>
                     <Search>
-                        <StyledInputBase placeholder="Search..." inputProps={{ "aria-label": "search" }} />
+                        <SearchIconWrapper>
+                            <MagnifyingGlass color="#709CE6" />
+                        </SearchIconWrapper>
+                        <StyledInputBase
+                            placeholder="Search..."
+                            inputProps={{ "aria-label": "search" }}
+                        />
                     </Search>
                 </Stack>
                 <Stack spacing={1}>

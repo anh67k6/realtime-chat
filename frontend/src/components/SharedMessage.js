@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Grid,
-  IconButton,
-  Stack,
-  Tab,
-  Tabs,
-  Typography,
-} from "@mui/material";
+import { Box, Grid, IconButton, Stack, Tab, Tabs, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { UpdateSidebarType } from "../redux/slices/app";
@@ -19,11 +11,11 @@ import { DocMsg, LinkMsg } from "./Chat/MsgType";
 const SharedMessage = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const [value, setValue] = useState(0);
+const [value, setValue] = useState(0);
 
   const handleChange = (e, newValue) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
   return (
     <Box sx={{ width: 320, height: "100vh " }}>
       <Stack sx={{ height: "100%" }}>
@@ -54,23 +46,14 @@ const SharedMessage = () => {
           </Stack>
         </Box>
 
-        <Tabs
-          sx={{
-            px: 2,
-            pt: 2,
-            backgroundColor:
+              <Tabs sx={{px: 2, pt: 2,             backgroundColor:
               theme.palette.mode === "light"
                 ? "#F8FAFF"
-                : theme.palette.background,
-          }}
-          value={value}
-          onChange={handleChange}
-          centered
-        >
-          <Tab label="Media" />
-          <Tab label="Links" />
-          <Tab label="Docs" />
-        </Tabs>
+                : theme.palette.background,}} value={value} onChange={handleChange} centered>
+                <Tab label="Media"/>
+                <Tab label="Links"/>
+                <Tab label="Docs"/>
+              </Tabs>
         <Stack
           sx={{
             position: "relative",
@@ -83,34 +66,33 @@ const SharedMessage = () => {
                 : theme.palette.background,
           }}
           p={3}
-          spacing={1 === 1 ? 1 : 3}
+          spacing = {1 === 1 ? 1 : 3}
         >
-          {(() => {
-            switch (value) {
-              case 0:
-                //Images
-                return (
-                  <Grid container spacing={2}>
-                    {[0, 1, 2, 3, 4, 5, 6].map((el) => (
-                      <Grid item xs={4} key={el}>
-                        <img
-                          src={faker.image.avatar()}
-                          alt={faker.name.fullName()}
-                        />
-                      </Grid>
-                    ))}
-                  </Grid>
-                );
-              case 1:
-                return SHARED_LINK.map((el) => {
-                  return <LinkMsg el={el} />;
-                });
-              case 2:
-                return SHARED_DOCS.map((el) => {
-                  return <DocMsg el={el} />;
-                });
+            {
+                (()=>{
+                    switch(value){
+                        case 0:
+                            //Images
+                            return (
+                              <Grid container spacing={2}>
+                                {[0, 1, 2, 3, 4, 5, 6].map((el) => (
+                                  <Grid item xs={4} key={el}>
+                                    <img src={faker.image.avatar()} alt={faker.name.fullName()} />
+                                  </Grid>
+                                ))}
+                              </Grid>
+                            );
+                        case 1:
+                            return SHARED_LINK.map((el)=> {
+                                return <LinkMsg el={el}/>
+                            })
+                        case 2:
+                            return SHARED_DOCS.map((el)=> {
+                                return <DocMsg el={el}/>
+                            })
+                    }
+                })()
             }
-          })()}
         </Stack>
       </Stack>
     </Box>

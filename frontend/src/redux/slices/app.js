@@ -7,11 +7,6 @@ const initialState = {
     open: false,
     type: "CONTACT", // can be CONTACT, STARRED, SHARED
   },
-  snackbar : {
-    open : null,
-    message : null,
-    severity : null,
-  }
 };
 
 const slice = createSlice({
@@ -25,16 +20,6 @@ const slice = createSlice({
     updateSideBarType(state, action) {
       state.sideBar.type = action.payload.type;
     },
-    openSnackbar(state, action){
-      state.snackbar.open = true;
-      state.snackbar.message = action.payload.message;
-      state.snackbar.severity = action.payload.severity;
-    },
-    closeSnackbar(state, action){
-      state.snackbar.open = false;
-      state.snackbar.message = null;
-      state.snackbar.severity = null;
-    }
   },
 });
 
@@ -50,24 +35,4 @@ export function UpdateSidebarType(type) {
   return async () => {
     dispatch(slice.actions.updateSideBarType({ type }));
   };
-}
-
-export function showSnackbar({severity, message}) {
-  return async (dispatch, getState) => {
-    dispatch(slice.actions.openSnackbar({
-      message,
-      severity,
-    }))
-
-    setTimeout(() => {
-      dispatch(slice.actions.closeSnackbar());
-    }, 4000)
-  }
-}
-
-
-export function closeSnackbar(){
-  return async (dispatch, getState) => {
-    dispatch(slice.actions.closeSnackbar());
-  }
 }

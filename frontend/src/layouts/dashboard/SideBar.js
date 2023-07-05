@@ -6,9 +6,41 @@ import AntSwitch from '../../components/AntSwitch.js'
 import useSettings from '../../hooks/useSettings.js'
 import { useTheme } from "@mui/material/styles";
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
+const getPath = (index) => {
+  switch (index) {
+    case 0:
+      return "/app"
+    case 1:
+      return "/group"
+    case 2:
+      return "/call"
+    case 3:
+      return "/settings"
+    default:
+      break;
+  }
+}
+
+const getMenuPath = (index) => {
+  switch (index) {
+    case 0:
+      return "/profile"
+    case 1:
+      return "/settings"
+
+    case 2:
+      return "/auth/login"
+
+    default:
+      break;
+  }
+}
 
 const SideBar = () => {
   const [selected, setSelected] = useState(0);
+  const navigate = useNavigate()
   const theme = useTheme();
   const { onToggleMode } = useSettings();
 
@@ -67,9 +99,16 @@ const SideBar = () => {
             }}
           >
             <Stack spacing={1} px={1}>
-              {Profile_Menu.map((el) => (
-                <MenuItem onClick={handleClose}>
-                  <Stack sx={{ width: 100 }} direction="row" alignItems={"center"} justifyContent="space-between">
+              {Profile_Menu.map((el, idx) => (
+                <MenuItem onClick={() => {
+                  handleClick()
+                }}>
+                  <Stack
+                    onClick={() => {
+                      navigate(getMenuPath(idx))
+
+                    }}
+                    sx={{ width: 100 }} direction="row" alignItems={"center"} justifyContent="space-between">
 
                     <span>{el.title}</span>{el.icon}
                   </Stack>{" "}
@@ -103,6 +142,7 @@ const SideBar = () => {
                   sx={{ color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary, width: "max-content" }}
                   onClick={() => {
                     setSelected(el.index);
+                    navigate(getPath(el.index))
                   }}
                 >
                   {el.icon}
@@ -124,6 +164,7 @@ const SideBar = () => {
             ) : (
               <IconButton
                 onClick={() => {
+                  navigate(getPath(3))
                   setSelected(3);
                 }}
                 sx={{ color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary, width: "max-content" }}
