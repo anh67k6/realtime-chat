@@ -40,6 +40,10 @@ export default function Router() {
         { path: "app", element: <GeneralApp /> },
         { path: "settings", element: <Settings /> },
 
+        // Part 12
+        { path: "call", element: <CallPage />},
+        //----------
+
         { path: "404", element: <Page404 /> },
         { path: "*", element: <Navigate to="/404" replace /> },
       ],
@@ -61,5 +65,9 @@ const GeneralApp = Loadable(
 const Settings = Loadable(
   lazy(() => import("../pages/dashboard/Settings")),
 );
+
+// Part 12
+const CallPage = Loadable(lazy(() => import("../pages/dashboard/Call"))); 
+//-----------
 
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));
