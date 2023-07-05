@@ -10,7 +10,10 @@ const initialState = {
     open : null,
     message : null,
     severity : null,
-  }
+  },
+  users: [],
+  friends: [],
+  friendRequests: [],
 };
 
 const slice = createSlice({
@@ -33,9 +36,69 @@ const slice = createSlice({
       state.snackbar.open = false;
       state.snackbar.message = null;
       state.snackbar.severity = null;
-    }
+    },
+
+    updateUsers(state, action){
+      state.users = action.payload.users;
+    },
+
+    updateFriends(state, action){
+      state.friends = action.payload.friends;
+    },
+
+    updateFriendRequests(state, action){
+      state.friendRequests = action.payload.requests;
+    },
   },
 });
+
+export const FetchUsers = () => {
+  return async (dispatch, getState) => {
+    await axios.get("/user/get-users", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getState().auth.token}`,
+      },
+    }),then((respoense) => {
+      console.log(response);
+      dispatch(slice.actions.updateUsers({users: response.data.data}))
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
+};
+
+export const FetchFriends = () => {
+  return async (dispatch, getState) => {
+    await axios.get("/user/get-friends", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getState().auth.token}`,
+      },
+    }).then((respoense) => {
+      console.log(response);
+      dispatch(slice.actions.updateUsers({friends: response.data.data}))
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
+};
+
+export const FetchRequest = () => {
+  return async (dispatch, getState) => {
+    await axios.get("/user/get-friend-requests", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getState().auth.token}`,
+      },
+    }).then((respoense) => {
+      console.log(response);
+      dispatch(slice.actions.updateFriendRequest({request: response.data.data}))
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
+};
 
 // Reducer
 export default slice.reducer;
