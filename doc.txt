@@ -6,3 +6,17 @@
 1. Suspense, lazy from React
 Suspense : cho phép chúng ta thực hiện một số công việc (như fetch data từ api) song song với quá trình render component
 lazy : Giúp code ngắn gọn hơn
+
+
+
+
+---------------------------------------
+
+Xây dựng backend
+- Import moongose
+- Xây dựng user module
+- Login , Logout ở trong controller
+    -> Nếu login thành công thì trả về 1 token
+
+    -> Register user
+        -> Xây dựng filter Object
