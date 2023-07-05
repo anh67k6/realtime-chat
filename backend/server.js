@@ -26,7 +26,7 @@ const VideoCall = require("./models/videoCall");
 // Create an io server and allow for CORS from http://localhost:4000 with GET and POST methods
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: "htpp://localhost:4000",
     methods: ["GET", "POST"],
   },
 });
@@ -53,8 +53,11 @@ server.listen(port, () => {
 // Add this
 // Listen for when the client connects via socket.io-client
 io.on("connection", async (socket) => {
-  console.log(JSON.stringify(socket.handshake.query));
+  //console.log(JSON.stringify(socket.handshake.query));
+  //console.log(socket);
   const user_id = socket.handshake.query["user_id"];
+
+  const socket_id = socket.id;
 
   console.log(`User connected ${socket.id}`);
 

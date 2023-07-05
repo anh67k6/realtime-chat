@@ -9,8 +9,8 @@ const initialState = {
   isLoggedIn: false,
   token: "",
   isLoading: false,
-//   user: null,
-//   user_id: null,
+  //   user: null,
+  //   user_id: null,
   email: "",
   error: false,
 };
@@ -26,12 +26,12 @@ const slice = createSlice({
     logIn(state, action) {
       state.isLoggedIn = action.payload.isLoggedIn;
       state.token = action.payload.token;
-    //   state.user_id = action.payload.user_id;
+      //   state.user_id = action.payload.user_id;
     },
     signOut(state, action) {
       state.isLoggedIn = false;
       state.token = "";
-    //   state.user_id = null;
+      //   state.user_id = null;
     },
     updateRegisterEmail(state, action) {
       state.email = action.payload.email;
@@ -61,11 +61,11 @@ export function NewPassword(formValues) {
       .then(function (response) {
         console.log(response);
         dispatch(
-            slice.actions.logIn({
-              isLoggedIn: true,
-              token: response.data.token,
-            })
-          );
+          slice.actions.logIn({
+            isLoggedIn: true,
+            token: response.data.token,
+          })
+        );
         dispatch(
           showSnackbar({ severity: "success", message: response.data.message })
         );
@@ -171,49 +171,72 @@ export function LogoutUser() {
   };
 }
 
-export function RegisterUser (formValues) {
+export function RegisterUser(formValues) {
   return async (dispatch, getState) => {
-    dispatch(slice.actions.updateIsLoading({isLoading: true, error: false}))
-    await axios.post("/auth/register", {
-      ...formValues,
-    }, {
-      headers: {
-        "Content-Type": "application/json",
-      }
-    }).then(() => {
-      console.log(response);
-      dispatch(slice.actions.updateRegisterEmail({email:formValues.email }));
-      dispatch(slice.actions.updateIsLoading({isLoading: false, error: false}))
-    }).catch((error) => {
-      console.log(error);
-      dispatch(slice.actions.updateIsLoading({isLoading: false, error: true}))
-    }).finally(() => {
-      if(getState().auth.error){
-        window.location.href = "/auth/verify";
-      }
-    })
-  }
+    dispatch(slice.actions.updateIsLoading({ isLoading: true, error: false }));
+    await axios
+      .post(
+        "/auth/register",
+        {
+          ...formValues,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(() => {
+        console.log(response);
+        dispatch(
+          slice.actions.updateRegisterEmail({ email: formValues.email })
+        );
+        dispatch(
+          slice.actions.updateIsLoading({ isLoading: false, error: false })
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+        dispatch(
+          slice.actions.updateIsLoading({ isLoading: false, error: true })
+        );
+      })
+      .finally(() => {
+        if (getState().auth.error) {
+          window.location.href = "/auth/verify";
+        }
+      });
+  };
 }
 
 export function VerifyEmail(formValues) {
   return async (dispatch, getState) => {
-    await axios.post("/auth/verify", {
-      ...formValues,
-    }, {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }).then((response) => {
-      console.log(response);
-      dispatch(slice.actions.logIn({
-        isLoggedIn: true,
-        token: response.data.token,
-        })
-      );
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
+    await axios
+      .post(
+        "/auth/verify",
+        {
+          ...formValues,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        dispatch(
+          slice.actions.logIn({
+            isLoggedIn: true,
+            token: response.data.token,
+          })
+        );
+        window.localStorage.setItem("user_id", response.data.user_id);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 }
 
 // export function RegisterUser(formValues) {
@@ -286,7 +309,6 @@ export function VerifyEmail(formValues) {
 //             token: response.data.token,
 //           })
 //         );
-
 
 //         dispatch(
 //           showSnackbar({ severity: "success", message: response.data.message })
