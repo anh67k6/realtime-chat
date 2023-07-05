@@ -84,7 +84,7 @@ exports.getRequests = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     data: requests,
-    message: "Requests found successfully!",
+    message: "Friends requests Found successfully!",
   });
 });
 

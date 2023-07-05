@@ -51,7 +51,7 @@ export default function AuthRegisterForm() {
   const onSubmit = async (data) => {
     try {
       // submit data to backend
-        console.log("Dang kis ne")
+        dispatch(RegisterUser);
     } catch (error) {
       console.error(error);
       reset();

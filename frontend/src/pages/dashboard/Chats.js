@@ -113,7 +113,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     }
 }))
 const Chats = () => {
+    const [openDialog, setOpenDialog] = useState(false);
     const theme = useTheme();
+
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
+    }
+    const handleOpenDialog = () => {
+        setOpenDialog(true);
+    }
     return (
         <Box sx={{
             position: "relative",
@@ -126,12 +134,22 @@ const Chats = () => {
                     direction="row"
                     alignItems={"center"}
                     justifyContent="space-between">
+
                     <Typography variant="h5">
                         Chats
                     </Typography>
-                    <IconButton>
-                        <CircleDashed />
-                    </IconButton>
+
+                    <Stack direction = "row" alignItems = "center" spacing = {1}>
+                        <IconButton onClick={(
+                            handleOpenDialog();
+                        )}>
+                            <Users />
+                        </IconButton>
+                        <IconButton>
+                            <CircleDashed />
+                        </IconButton>
+                    </Stack>
+
                 </Stack>
                 <Stack sx={{ width: "100%" }}>
                     <Search>
